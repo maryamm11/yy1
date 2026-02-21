@@ -1,6 +1,57 @@
 @App.Api_HostAddress = http://localhost:5144
 
-GET {{App.Api_HostAddress}}/weatherforecast/
+### Register a Charity
+POST {{App.Api_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "userName": "testcharity",
+  "email": "charity@test.com",
+  "phoneNumber": "1234567890",
+  "password": "Test@1234",
+  "confirmPassword": "Test@1234",
+  "userType": "Charity",
+  "organizationName": "Test Charity Org",
+  "organizationDescription": "A test charity organization"
+}
+
+### Register a Donor
+POST {{App.Api_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "userName": "testdonor",
+  "email": "donor@test.com",
+  "phoneNumber": "0987654321",
+  "password": "Test@1234",
+  "confirmPassword": "Test@1234",
+  "userType": "Donor",
+  "organizationName": "Test Donor Org"
+}
+
+### Login
+POST {{App.Api_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "charity@test.com",
+  "password": "Test@1234"
+}
+
+### Get All Charities
+GET {{App.Api_HostAddress}}/api/charities?pageNumber=1&pageSize=10
+Accept: application/json
+
+### Get All Donors
+GET {{App.Api_HostAddress}}/api/donors?pageNumber=1&pageSize=10
+Accept: application/json
+
+### Get All Needs
+GET {{App.Api_HostAddress}}/api/needs?pageNumber=1&pageSize=10
+Accept: application/json
+
+### Get All Offers
+GET {{App.Api_HostAddress}}/api/offers?pageNumber=1&pageSize=10
 Accept: application/json
 
 ###

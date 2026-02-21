@@ -1,4 +1,5 @@
 ﻿using App.Core.Entities;
+using App.Core.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -28,7 +29,8 @@ namespace App.Infrastructure.Configurations.DbConfigurations
             builder.Property(na => na.Status)
                 .IsRequired()
                 .HasMaxLength(20)
-                .HasDefaultValue("pending")
+                .HasDefaultValue(ApplicationStatus.Pending)
+                .HasConversion<string>()
                 .HasComment("pending, accepted, rejected");
 
             builder.Property(na => na.CreatedAt)

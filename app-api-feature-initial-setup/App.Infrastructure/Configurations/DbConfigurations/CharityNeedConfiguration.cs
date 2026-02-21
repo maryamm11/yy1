@@ -1,4 +1,5 @@
 ﻿using App.Core.Entities;
+using App.Core.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -42,13 +43,15 @@ namespace App.Infrastructure.Configurations.DbConfigurations
             builder.Property(cn => cn.Priority)
                 .IsRequired()
                 .HasMaxLength(20)
-                .HasDefaultValue("normal")
+                .HasDefaultValue(Priority.Normal)
+                .HasConversion<string>()
                 .HasComment("urgent, high, normal, low");
 
             builder.Property(cn => cn.Status)
                 .IsRequired()
                 .HasMaxLength(20)
-                .HasDefaultValue("pending")
+                .HasDefaultValue(NeedStatus.Pending)
+                .HasConversion<string>()
                 .HasComment("pending, approved, rejected, fulfilled");
 
             builder.Property(cn => cn.CreatedAt)
