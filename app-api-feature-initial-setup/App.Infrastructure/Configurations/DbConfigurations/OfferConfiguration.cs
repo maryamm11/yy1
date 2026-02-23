@@ -1,4 +1,5 @@
 ﻿using App.Core.Entities;
+using App.Core.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -50,7 +51,8 @@ namespace App.Infrastructure.Configurations.DbConfigurations
             builder.Property(o => o.Status)
                 .IsRequired()
                 .HasMaxLength(20)
-                .HasDefaultValue("available")
+                .HasDefaultValue(OfferStatus.Available)
+                .HasConversion<string>()
                 .HasComment("available, expired");
 
             builder.Property(o => o.CreatedAt)

@@ -1,4 +1,6 @@
-﻿namespace App.Core.Entities
+﻿using App.Core.Enums;
+
+namespace App.Core.Entities
 {
     public class Offer
     {
@@ -10,7 +12,7 @@
         public int Quantity { get; set; }  
         public string? ProductImage { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public string Status { get; set; }  
+        public OfferStatus Status { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 

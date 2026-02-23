@@ -31,5 +31,24 @@ namespace App.Infrastructure.DbContext
             modelBuilder.ApplyConfiguration(new OfferApplicationConfiguration());
             modelBuilder.ApplyConfiguration(new OfferConfiguration());
         }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var entries = ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Modified);
+
+            foreach (var entry in entries)
+            {
+                var updatedAtProperty = entry.Properties
+                    .FirstOrDefault(p => p.Metadata.Name == "UpdatedAt");
+
+                if (updatedAtProperty != null)
+                {
+                    updatedAtProperty.CurrentValue = DateTime.UtcNow;
+                }
+            }
+
+            return await base.SaveChangesAsync(cancellationToken);
+        }
     }
 }

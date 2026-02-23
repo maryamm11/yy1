@@ -1,11 +1,13 @@
-﻿namespace App.Core.Entities
+﻿using App.Core.Enums;
+
+namespace App.Core.Entities
 {
     public class NeedApplication
     {
         public Guid NeedApplicationId { get; set; }
         public Guid DonorOrganizationId { get; set; }  
         public Guid CharityNeedId { get; set; }
-        public string Status { get; set; }  
+        public ApplicationStatus Status { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
